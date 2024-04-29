@@ -1,6 +1,5 @@
 package com.example.oversearch.data
 
-import com.example.oversearch.data.data.toDomain
 import com.example.oversearch.di.Dispatcher
 import com.example.oversearch.di.Dispatchers
 import com.example.oversearch.domain.models.Player
@@ -19,7 +18,7 @@ class PlayerRepository @Inject constructor(
         overwatchPlayerSearchDataSource.search(text)
             .map {
                 Player(
-                    username = it.battleTag.substringBefore('#'),
+                    username = it.battleTag,
                     image = it.portrait,
                     backgroundImage = it.frame,
                     title = it.title

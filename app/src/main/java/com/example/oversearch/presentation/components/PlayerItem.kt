@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -52,7 +51,7 @@ fun PlayerItem(player: Player) {
                         drawRect(brush)
                     }
                 )
-                Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
+                Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
                     Text(
                         text = player.username,
                         fontWeight = FontWeight.Bold,
