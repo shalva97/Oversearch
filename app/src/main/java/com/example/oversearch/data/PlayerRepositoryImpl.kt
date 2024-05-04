@@ -1,30 +1,19 @@
 package com.example.oversearch.data
 
+import com.example.oversearch.data.data.toDomain
 import com.example.oversearch.di.Dispatcher
 import com.example.oversearch.di.Dispatchers
-import com.example.oversearch.domain.models.Player
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.jsonObject
 import javax.inject.Inject
 
 class PlayerRepository @Inject constructor(
     private val overwatchPlayerSearchDataSource: OverwatchPlayerSearchDataSource,
-    private val owData: OverwatchResourcesDataSource,
     @Dispatcher(Dispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
 ) {
     suspend fun search(text: String) = withContext(ioDispatcher) {
-        val parsedOWData = Json.parseToJsonElement(owData.readRawJson())
         overwatchPlayerSearchDataSource.search(text)
-            .map {
-                Player(
-                    username = it.battleTag,
-                    image = it.portrait,
-                    backgroundImage = it.frame,
-                    title = parsedOWData.jsonObject[it.title].toString()
-                )
-            }
+            .map { it.toDomain() }
     }
 
     fun getLastSearchedPlayers(): List<String> {

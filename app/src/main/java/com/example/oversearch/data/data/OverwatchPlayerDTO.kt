@@ -1,25 +1,13 @@
 package com.example.oversearch.data.data
 
 import com.example.oversearch.domain.models.Player
-import kotlinx.serialization.Serializable
+import io.github.shalva97.overwatch_player_search_api.models.OverwatchPlayer
 
-@Serializable
-data class OverwatchPlayerDTO(
-    val battleTag: String,
-    val frame: String,
-    val isPublic: Boolean,
-    val lastUpdated: Long,
-    val namecard: String,
-    val portrait: String,
-    val title: String,
-    val url: String
-)
-
-fun OverwatchPlayerDTO.toDomain(): Player {
+fun OverwatchPlayer.toDomain(): Player {
     return Player(
-        username = this.battleTag,  // Assume username comes from battleTag
-        image = this.portrait,  // Assume image comes from portrait
-        backgroundImage = this.frame,  // Assume background image comes from frame
-        title = this.title  // Title is the same as in DTO
+        username = this.battleTag,
+        image = this.portrait,
+        backgroundImage = this.namecard,
+        title = this.title
     )
 }
