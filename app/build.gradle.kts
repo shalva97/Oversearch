@@ -65,6 +65,7 @@ kapt {
 
 //noinspection UseTomlInstead
 dependencies {
+    implementation("io.github.shalva97.overwatch_player_search_api:library:1.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("io.ktor:ktor-client-content-negotiation:2.3.10")
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.10")
