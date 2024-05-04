@@ -1,7 +1,6 @@
 package com.example.oversearch.presentation.components
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,6 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.example.oversearch.R
 import com.example.oversearch.domain.models.Player
 import com.example.oversearch.domain.models.mock_data.player1
@@ -34,16 +34,14 @@ fun PlayerItem(player: Player) {
             .height(60.dp)
     ) {
         Row {
-            Image(
+            AsyncImage(
                 modifier = Modifier.aspectRatio(1f),
-                painter = painterResource(id = R.drawable.img_sample_player),
+                model = player.image,
+                placeholder = painterResource(id = R.drawable.img_sample_player),
                 contentDescription = null
             )
             Box {
-                Image(
-                    painter = painterResource(id = R.drawable.img_sample_player_background),
-                    contentDescription = null
-                )
+                AsyncImage(model = player.backgroundImage, contentDescription = null)
                 val brush = Brush.horizontalGradient(listOf(Color.White, Color.Transparent))
                 Canvas(
                     modifier = Modifier.size(300.dp),

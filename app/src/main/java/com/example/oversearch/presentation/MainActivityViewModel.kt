@@ -21,7 +21,7 @@ class MainActivityViewModel @Inject constructor(
     }
 
     init {
-        searchPlayer("bigman")
+        searchPlayer("shalva")
     }
 
     fun searchPlayer(name: String) = viewModelScope.launch(exceptionHandler) {
