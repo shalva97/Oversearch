@@ -66,6 +66,7 @@ kapt {
 //noinspection UseTomlInstead
 dependencies {
     implementation("io.coil-kt:coil-compose:2.6.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     implementation("io.github.shalva97.overwatch_player_search_api:library:1.1")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("io.ktor:ktor-client-content-negotiation:2.3.10")
@@ -78,6 +79,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
+    implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)

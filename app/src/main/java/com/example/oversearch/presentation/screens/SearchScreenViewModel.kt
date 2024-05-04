@@ -1,4 +1,4 @@
-package com.example.oversearch.presentation
+package com.example.oversearch.presentation.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,20 +11,23 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainActivityViewModel @Inject constructor(
-    private val playerRepository: PlayerRepository
+class SearchScreenViewModel @Inject constructor(
+    private val playerRepository: PlayerRepository,
 ) : ViewModel() {
-    val players = MutableStateFlow(emptyList<Player>())
+    val state = MutableStateFlow(SearchScreenState())
     private val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
         throwable.printStackTrace()
-        123
+        state.tryEmit(state.value.copy(isLoading = false))
     }
-
-//    init {
-//        searchPlayer("shalva")
-//    }
 
     fun searchPlayer(name: String) = viewModelScope.launch(exceptionHandler) {
-        players.emit(playerRepository.search(name))
+        state.emit(state.value.copy(isLoading = true))
+        val players = playerRepository.search(name)
+        state.emit(state.value.copy(isLoading = false, players = players))
     }
 }
+
+data class SearchScreenState(
+    val isLoading: Boolean = false,
+    val players: List<Player> = emptyList(),
+)
