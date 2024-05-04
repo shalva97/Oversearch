@@ -6,6 +6,7 @@ import com.example.oversearch.domain.models.Player
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.jsonObject
 import javax.inject.Inject
 
 class PlayerRepository @Inject constructor(
@@ -21,7 +22,7 @@ class PlayerRepository @Inject constructor(
                     username = it.battleTag,
                     image = it.portrait,
                     backgroundImage = it.frame,
-                    title = it.title
+                    title = parsedOWData.jsonObject[it.title].toString()
                 )
             }
     }

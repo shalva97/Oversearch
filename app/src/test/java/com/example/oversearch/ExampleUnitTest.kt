@@ -1,28 +1,22 @@
 package com.example.oversearch
 
-import android.content.res.Resources
 import com.example.oversearch.data.OverwatchPlayerSearchDataSource
 import com.example.oversearch.data.OverwatchResourcesDataSource
 import com.example.oversearch.data.PlayerRepository
 import com.example.oversearch.data.data.OverwatchPlayerDTO
-import com.example.oversearch.domain.models.Player
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
-import io.ktor.client.statement.bodyAsText
+import io.ktor.serialization.kotlinx.json.json
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.io.File
-import java.nio.charset.StandardCharsets
-import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
-
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.serialization.kotlinx.json.*
-import kotlinx.coroutines.Dispatchers
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -117,16 +111,3 @@ class ExampleUnitTest {
     }
 }
 
-val a = """[
-  {
-    "battleTag": "shalva#21962",
-    "frame": "0x0250000000000918",
-    "isPublic": true,
-    "lastUpdated": 1714150720,
-    "namecard": "0x0250000000006A8D",
-    "portrait": "0x0250000000006E0A",
-    "title": "0x0250000000006B2E",
-    "url": "e156ad86a570d6ffb8a921a2%7C44a3944e9291875ca4bff9bad8d45767"
-  }
-]
-"""
