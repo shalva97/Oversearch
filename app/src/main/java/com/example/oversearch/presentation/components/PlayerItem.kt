@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -42,7 +43,12 @@ fun PlayerItem(player: Player) {
             )
             Box {
                 AsyncImage(model = player.backgroundImage, contentDescription = null)
-                val brush = Brush.horizontalGradient(listOf(Color.White, Color.Transparent))
+                val brush = Brush.horizontalGradient(
+                    listOf(
+                        MaterialTheme.colorScheme.background,
+                        Color.Transparent
+                    )
+                )
                 Canvas(
                     modifier = Modifier.size(300.dp),
                     onDraw = {
