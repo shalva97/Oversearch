@@ -58,10 +58,12 @@ fun PlayerItem(player: Player) {
                         modifier = Modifier
                             .padding(start = 16.dp)
                     )
-                    Text(
-                        text = player.title, modifier = Modifier
-                            .padding(start = 16.dp)
-                    )
+                    if (player.title != null) {
+                        Text(
+                            text = player.title, modifier = Modifier
+                                .padding(start = 16.dp)
+                        )
+                    }
                 }
             }
 

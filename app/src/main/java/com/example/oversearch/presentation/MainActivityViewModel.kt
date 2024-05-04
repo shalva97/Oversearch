@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.oversearch.data.PlayerRepository
 import com.example.oversearch.domain.models.Player
-import com.example.oversearch.domain.models.mock_data.mockPlayers
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +21,7 @@ class MainActivityViewModel @Inject constructor(
     }
 
     init {
-        searchPlayer("shalva")
+        searchPlayer("bigman")
     }
 
     fun searchPlayer(name: String) = viewModelScope.launch(exceptionHandler) {
