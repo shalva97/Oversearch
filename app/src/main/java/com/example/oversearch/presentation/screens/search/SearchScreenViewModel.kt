@@ -1,4 +1,4 @@
-package com.example.oversearch.presentation.screens
+package com.example.oversearch.presentation.screens.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

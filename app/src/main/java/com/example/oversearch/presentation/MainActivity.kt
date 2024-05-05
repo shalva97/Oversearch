@@ -11,7 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.oversearch.presentation.screens.SearchScreen
+import com.example.oversearch.presentation.screens.search.SearchScreen
+import com.example.oversearch.presentation.screens.stats.PlayerStatsScreen
 import com.example.oversearch.presentation.theme.OversearchTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,8 +43,10 @@ fun App() {
     ) {
         NavHost(navController = navController, startDestination = HOME) {
             composable(HOME) { SearchScreen(navController = navController) }
+            composable(PLAYER_STATS) { PlayerStatsScreen(navController = navController) }
         }
     }
 }
 
 const val HOME = "HOME"
+const val PLAYER_STATS = "PLAYER_STATS"
