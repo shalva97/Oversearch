@@ -44,10 +44,7 @@ fun PlayerItem(modifier: Modifier = Modifier, player: Player) {
             )
             val brush =
                 Brush.horizontalGradient(
-                    listOf(
-                        MaterialTheme.colorScheme.background,
-                        Color.Transparent
-                    )
+                    listOf(MaterialTheme.colorScheme.background, Color.Transparent)
                 )
             Canvas(modifier = Modifier.size(300.dp), onDraw = { drawRect(brush) })
             Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
@@ -68,10 +65,8 @@ fun PlayerItem(modifier: Modifier = Modifier, player: Player) {
 @Composable
 fun GreetingPreview() {
     OversearchTheme {
-        ElevatedCard(
-            modifier = Modifier
-                .padding(16.dp)
-                .height(60.dp)
-        ) { PlayerItem(player = player1) }
+        ElevatedCard(modifier = Modifier.padding(16.dp).height(60.dp)) {
+            PlayerItem(player = player1)
+        }
     }
 }

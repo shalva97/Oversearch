@@ -39,9 +39,7 @@ fun SearchScreen(
             modifier = Modifier.weight(1f)
         ) {
             items(state.players) {
-                ElevatedCard(modifier = Modifier
-                    .padding(16.dp)
-                    .height(60.dp)) {
+                ElevatedCard(modifier = Modifier.padding(16.dp).height(60.dp)) {
                     PlayerItem(player = it)
                 }
             }
@@ -52,11 +50,13 @@ fun SearchScreen(
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
             keyboardActions =
-            KeyboardActions(
-                onSearch = { if (state.isLoading.not()) viewmodel.searchPlayer(searchText) }),
+                KeyboardActions(
+                    onSearch = { if (state.isLoading.not()) viewmodel.searchPlayer(searchText) }
+                ),
             maxLines = 1,
             placeholder = { Text(text = "Search for a player") },
             value = searchText,
-            onValueChange = { searchText = it })
+            onValueChange = { searchText = it }
+        )
     }
 }

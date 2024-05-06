@@ -3,9 +3,9 @@ package com.example.oversearch.data
 import com.example.oversearch.data.data.toDomain
 import com.example.oversearch.di.Dispatcher
 import com.example.oversearch.di.Dispatchers
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 class PlayerRepository
 @Inject

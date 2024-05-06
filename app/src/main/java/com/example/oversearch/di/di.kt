@@ -18,6 +18,4 @@ object HttpModule {
     }
 }
 
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class RandomDeps {}
+@Module @InstallIn(SingletonComponent::class) abstract class RandomDeps {}
