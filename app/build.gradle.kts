@@ -4,6 +4,7 @@ plugins {
     kotlin("kapt")
     kotlin("plugin.serialization") version "1.9.23"
     id("com.google.dagger.hilt.android")
+    id("com.ncorti.ktfmt.gradle")
 }
 
 android {

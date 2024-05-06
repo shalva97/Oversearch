@@ -6,4 +6,3 @@ data class Player(
     val backgroundImage: String?,
     val title: String?,
 )
-

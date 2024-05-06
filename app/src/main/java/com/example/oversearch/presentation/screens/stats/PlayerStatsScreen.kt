@@ -35,4 +35,3 @@ fun PlayerStatsScreen(
 private fun Preview() {
     PlayerStatsScreen()
 }
-

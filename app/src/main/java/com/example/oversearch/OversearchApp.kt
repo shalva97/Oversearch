@@ -4,5 +4,4 @@ import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class OversearchApp: Application() {
-}
+class OversearchApp : Application() {}

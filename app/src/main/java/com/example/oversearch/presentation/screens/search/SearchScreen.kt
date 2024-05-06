@@ -39,26 +39,24 @@ fun SearchScreen(
             modifier = Modifier.weight(1f)
         ) {
             items(state.players) {
-                ElevatedCard(
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .height(60.dp)
-                ) {
+                ElevatedCard(modifier = Modifier
+                    .padding(16.dp)
+                    .height(60.dp)) {
                     PlayerItem(player = it)
                 }
             }
         }
-        if (state.isLoading)
-            LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+        if (state.isLoading) LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
         var searchText by remember { mutableStateOf("") }
-        TextField(modifier = Modifier.fillMaxWidth(),
+        TextField(
+            modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-            keyboardActions = KeyboardActions(onSearch = {
-                if (state.isLoading.not())
-                    viewmodel.searchPlayer(searchText)
-            }),
+            keyboardActions =
+            KeyboardActions(
+                onSearch = { if (state.isLoading.not()) viewmodel.searchPlayer(searchText) }),
             maxLines = 1,
             placeholder = { Text(text = "Search for a player") },
-            value = searchText, onValueChange = { searchText = it })
+            value = searchText,
+            onValueChange = { searchText = it })
     }
 }

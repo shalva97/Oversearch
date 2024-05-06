@@ -14,16 +14,10 @@ import io.ktor.serialization.kotlinx.json.json
 object HttpModule {
     @Provides
     fun getHttpClient(): HttpClient {
-        return HttpClient(OkHttp) {
-            install(ContentNegotiation) {
-                json()
-            }
-        }
+        return HttpClient(OkHttp) { install(ContentNegotiation) { json() } }
     }
 }
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class RandomDeps {
-
-}
+abstract class RandomDeps {}

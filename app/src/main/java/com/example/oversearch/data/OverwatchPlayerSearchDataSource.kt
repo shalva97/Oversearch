@@ -7,7 +7,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class OverwatchPlayerSearchDataSource @Inject constructor(
+class OverwatchPlayerSearchDataSource
+@Inject
+constructor(
     private val client: HttpClient,
 ) : IOverwatchPlayerSearchDataSource {
 

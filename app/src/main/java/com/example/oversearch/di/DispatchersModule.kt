@@ -1,6 +1,7 @@
 package com.example.oversearch.di
 
-import com.example.oversearch.di.Dispatchers.*
+import com.example.oversearch.di.Dispatchers.Default
+import com.example.oversearch.di.Dispatchers.IO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

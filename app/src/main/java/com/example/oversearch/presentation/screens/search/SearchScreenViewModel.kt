@@ -11,7 +11,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchScreenViewModel @Inject constructor(
+class SearchScreenViewModel
+@Inject
+constructor(
     private val playerRepository: PlayerRepository,
 ) : ViewModel() {
     val state = MutableStateFlow(SearchScreenState())
@@ -20,11 +22,12 @@ class SearchScreenViewModel @Inject constructor(
         state.tryEmit(state.value.copy(isLoading = false))
     }
 
-    fun searchPlayer(name: String) = viewModelScope.launch(exceptionHandler) {
+    fun searchPlayer(name: String) =
+        viewModelScope.launch(exceptionHandler) {
         state.emit(state.value.copy(isLoading = true))
         val players = playerRepository.search(name)
         state.emit(state.value.copy(isLoading = false, players = players))
-    }
+        }
 }
 
 data class SearchScreenState(

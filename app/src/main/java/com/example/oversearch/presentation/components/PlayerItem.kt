@@ -40,38 +40,27 @@ fun PlayerItem(modifier: Modifier = Modifier, player: Player) {
             AsyncImage(
                 model = player.backgroundImage,
                 contentDescription = null,
-                placeholder = painterResource(
-                    id = R.drawable.img_sample_player_background
+                placeholder = painterResource(id = R.drawable.img_sample_player_background)
+            )
+            val brush =
+                Brush.horizontalGradient(
+                    listOf(
+                        MaterialTheme.colorScheme.background,
+                        Color.Transparent
+                    )
                 )
-            )
-            val brush = Brush.horizontalGradient(
-                listOf(
-                    MaterialTheme.colorScheme.background,
-                    Color.Transparent
-                )
-            )
-            Canvas(
-                modifier = Modifier.size(300.dp),
-                onDraw = {
-                    drawRect(brush)
-                }
-            )
+            Canvas(modifier = Modifier.size(300.dp), onDraw = { drawRect(brush) })
             Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
                 Text(
                     text = player.username,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                        .padding(start = 16.dp)
+                    modifier = Modifier.padding(start = 16.dp)
                 )
                 if (player.title != null) {
-                    Text(
-                        text = player.title, modifier = Modifier
-                            .padding(start = 16.dp)
-                    )
+                    Text(text = player.title, modifier = Modifier.padding(start = 16.dp))
                 }
             }
         }
-
     }
 }
 
@@ -83,8 +72,6 @@ fun GreetingPreview() {
             modifier = Modifier
                 .padding(16.dp)
                 .height(60.dp)
-        ) {
-            PlayerItem(player = player1)
-        }
+        ) { PlayerItem(player = player1) }
     }
 }
