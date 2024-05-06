@@ -31,32 +31,29 @@ fun SearchScreen(
     viewmodel: SearchScreenViewModel = hiltViewModel(),
     navController: NavHostController,
 ) {
-    val state by viewmodel.state.collectAsState()
-    Column {
-        LazyColumn(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            reverseLayout = true,
-            modifier = Modifier.weight(1f)
-        ) {
-            items(state.players) {
-                ElevatedCard(modifier = Modifier
-                    .padding(16.dp)
-                    .height(60.dp)) {
-                    PlayerItem(player = it)
-                }
+  val state by viewmodel.state.collectAsState()
+  Column {
+    LazyColumn(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        reverseLayout = true,
+        modifier = Modifier.weight(1f)) {
+          items(state.players) {
+            ElevatedCard(modifier = Modifier.padding(16.dp).height(60.dp)) {
+              PlayerItem(player = it)
             }
+          }
         }
-        if (state.isLoading) LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
-        var searchText by remember { mutableStateOf("") }
-        TextField(
-            modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-            keyboardActions =
+    if (state.isLoading) LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+    var searchText by remember { mutableStateOf("") }
+    TextField(
+        modifier = Modifier.fillMaxWidth(),
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+        keyboardActions =
             KeyboardActions(
                 onSearch = { if (state.isLoading.not()) viewmodel.searchPlayer(searchText) }),
-            maxLines = 1,
-            placeholder = { Text(text = "Search for a player") },
-            value = searchText,
-            onValueChange = { searchText = it })
-    }
+        maxLines = 1,
+        placeholder = { Text(text = "Search for a player") },
+        value = searchText,
+        onValueChange = { searchText = it })
+  }
 }

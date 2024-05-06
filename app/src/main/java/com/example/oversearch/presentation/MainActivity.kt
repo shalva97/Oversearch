@@ -18,31 +18,28 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            OversearchTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    App()
-                }
-            }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContent {
+      OversearchTheme {
+        // A surface container using the 'background' color from the theme
+        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+          App()
         }
+      }
     }
+  }
 }
 
 @Composable
 fun App() {
-    val navController = rememberNavController()
-    Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-        NavHost(navController = navController, startDestination = HOME) {
-            composable(HOME) { SearchScreen(navController = navController) }
-            composable(PLAYER_STATS) { PlayerStatsScreen(navController = navController) }
-        }
+  val navController = rememberNavController()
+  Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+    NavHost(navController = navController, startDestination = HOME) {
+      composable(HOME) { SearchScreen(navController = navController) }
+      composable(PLAYER_STATS) { PlayerStatsScreen(navController = navController) }
     }
+  }
 }
 
 const val HOME = "HOME"

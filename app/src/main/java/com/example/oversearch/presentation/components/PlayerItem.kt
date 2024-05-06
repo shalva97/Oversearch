@@ -29,49 +29,37 @@ import com.example.oversearch.presentation.theme.OversearchTheme
 
 @Composable
 fun PlayerItem(modifier: Modifier = Modifier, player: Player) {
-    Row(modifier) {
-        AsyncImage(
-            modifier = Modifier.aspectRatio(1f),
-            model = player.image,
-            placeholder = painterResource(id = R.drawable.img_sample_player),
-            contentDescription = null
-        )
-        Box {
-            AsyncImage(
-                model = player.backgroundImage,
-                contentDescription = null,
-                placeholder = painterResource(id = R.drawable.img_sample_player_background)
-            )
-            val brush =
-                Brush.horizontalGradient(
-                    listOf(
-                        MaterialTheme.colorScheme.background,
-                        Color.Transparent
-                    )
-                )
-            Canvas(modifier = Modifier.size(300.dp), onDraw = { drawRect(brush) })
-            Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
-                Text(
-                    text = player.username,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(start = 16.dp)
-                )
-                if (player.title != null) {
-                    Text(text = player.title, modifier = Modifier.padding(start = 16.dp))
-                }
-            }
+  Row(modifier) {
+    AsyncImage(
+        modifier = Modifier.aspectRatio(1f),
+        model = player.image,
+        placeholder = painterResource(id = R.drawable.img_sample_player),
+        contentDescription = null)
+    Box {
+      AsyncImage(
+          model = player.backgroundImage,
+          contentDescription = null,
+          placeholder = painterResource(id = R.drawable.img_sample_player_background))
+      val brush =
+          Brush.horizontalGradient(listOf(MaterialTheme.colorScheme.background, Color.Transparent))
+      Canvas(modifier = Modifier.size(300.dp), onDraw = { drawRect(brush) })
+      Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
+        Text(
+            text = player.username,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(start = 16.dp))
+        if (player.title != null) {
+          Text(text = player.title, modifier = Modifier.padding(start = 16.dp))
         }
+      }
     }
+  }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    OversearchTheme {
-        ElevatedCard(
-            modifier = Modifier
-                .padding(16.dp)
-                .height(60.dp)
-        ) { PlayerItem(player = player1) }
-    }
+  OversearchTheme {
+    ElevatedCard(modifier = Modifier.padding(16.dp).height(60.dp)) { PlayerItem(player = player1) }
+  }
 }
