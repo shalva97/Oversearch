@@ -13,12 +13,12 @@ constructor(
     private val overwatchPlayerSearchDataSource: OverwatchPlayerSearchDataSource,
     @Dispatcher(Dispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
 ) {
-    suspend fun search(text: String) =
-        withContext(ioDispatcher) {
-            overwatchPlayerSearchDataSource.search(text).map { it.toDomain() }
-        }
+  suspend fun search(text: String) =
+      withContext(ioDispatcher) {
+        overwatchPlayerSearchDataSource.search(text).map { it.toDomain() }
+      }
 
-    fun getLastSearchedPlayers(): List<String> {
-        return listOf("shalva", "bigman")
-    }
+  fun getLastSearchedPlayers(): List<String> {
+    return listOf("shalva", "bigman")
+  }
 }

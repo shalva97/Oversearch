@@ -32,23 +32,22 @@ fun SearchScreen(
     viewmodel: SearchScreenViewModel = hiltViewModel(),
     navController: NavHostController,
 ) {
-    val state by viewmodel.state.collectAsState()
-    Column(Modifier.safeDrawingPadding()) {
-        LazyColumn(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            reverseLayout = true,
-            modifier = Modifier.weight(1f)
-        ) {
-            items(state.players) {
-                ElevatedCard(modifier = Modifier.padding(16.dp).height(60.dp)) {
-                    PlayerItem(player = it)
-                }
+  val state by viewmodel.state.collectAsState()
+  Column(Modifier.safeDrawingPadding()) {
+    LazyColumn(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        reverseLayout = true,
+        modifier = Modifier.weight(1f)) {
+          items(state.players) {
+            ElevatedCard(modifier = Modifier.padding(16.dp).height(60.dp)) {
+              PlayerItem(player = it)
             }
+          }
         }
-        if (state.isLoading) LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
-        var searchText by remember { mutableStateOf("") }
-        TextField(
-            modifier = Modifier.padding(8.dp).fillMaxWidth(),
+    if (state.isLoading) LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+    var searchText by remember { mutableStateOf("") }
+    TextField(
+        modifier = Modifier.padding(8.dp).fillMaxWidth(),
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
             keyboardActions =
                 KeyboardActions(

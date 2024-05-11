@@ -13,9 +13,9 @@ constructor(
     private val client: HttpClient,
 ) : IOverwatchPlayerSearchDataSource {
 
-    private val playerSearch = PlayerSearch()
+  private val playerSearch = PlayerSearch()
 
-    override suspend fun search(text: String): List<OverwatchPlayer> {
-        return playerSearch.searchForPlayer(text)
-    }
+  override suspend fun search(text: String): List<OverwatchPlayer> {
+    return playerSearch.searchForPlayer(text)
+  }
 }
