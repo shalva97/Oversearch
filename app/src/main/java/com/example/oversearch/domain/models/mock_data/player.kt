@@ -8,7 +8,8 @@ val player1 =
         username = "ShadowStriker",
         image = "https://example.com/images/shadowstriker.png",
         backgroundImage = "https://example.com/images/bg1.jpg",
-        title = "Warrior")
+        title = "Warrior"
+    )
 
 // Variant 2
 val player2 =
@@ -16,7 +17,8 @@ val player2 =
         username = "DragonFury",
         image = "https://example.com/images/dragonfury.png",
         backgroundImage = "https://example.com/images/bg2.jpg",
-        title = "Mage")
+        title = "Mage"
+    )
 
 // Variant 3
 val player3 =
@@ -24,7 +26,8 @@ val player3 =
         username = "SilentAssassin",
         image = "https://example.com/images/silentassassin.png",
         backgroundImage = "https://example.com/images/bg3.jpg",
-        title = "Rogue")
+        title = "Rogue"
+    )
 
 // Variant 4
 val player4 =
@@ -32,7 +35,8 @@ val player4 =
         username = "StormCaller",
         image = "https://example.com/images/stormcaller.png",
         backgroundImage = "https://example.com/images/bg4.jpg",
-        title = "Shaman")
+        title = "Shaman"
+    )
 
 // Variant 5
 val player5 =
@@ -40,6 +44,7 @@ val player5 =
         username = "IronGuard",
         image = "https://example.com/images/ironguard.png",
         backgroundImage = "https://example.com/images/bg5.jpg",
-        title = "Paladin")
+        title = "Paladin"
+    )
 
 val mockPlayers = listOf(player1, player2, player3, player4, player5)

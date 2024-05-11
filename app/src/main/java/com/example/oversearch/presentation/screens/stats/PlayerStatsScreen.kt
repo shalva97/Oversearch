@@ -20,18 +20,18 @@ fun PlayerStatsScreen(
     viewModel: PlayerStatsScreenViewModel = hiltViewModel(),
     navController: NavHostController? = null,
 ) {
-  Column(Modifier.fillMaxSize()) {
-    PlayerItem(modifier = Modifier.height(60.dp), player = player1)
-    Text(
-        modifier = Modifier.padding(16.dp),
-        text = "Played 1 month 1 week 2 days",
-        style = MaterialTheme.typography.titleMedium,
-    )
-  }
+    Column(Modifier.fillMaxSize()) {
+        PlayerItem(modifier = Modifier.height(60.dp), player = player1)
+        Text(
+            modifier = Modifier.padding(16.dp),
+            text = "Played 1 month 1 week 2 days",
+            style = MaterialTheme.typography.titleMedium,
+        )
+    }
 }
 
-@Preview()
+@Preview
 @Composable
 private fun Preview() {
-  PlayerStatsScreen()
+    PlayerStatsScreen()
 }
