@@ -8,9 +8,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.oversearch.presentation.screens.search.SearchScreen
 import com.example.oversearch.presentation.screens.stats.PlayerStatsScreen
 import com.example.oversearch.presentation.theme.OversearchTheme
@@ -39,11 +41,24 @@ fun App() {
     val navController = rememberNavController()
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         NavHost(navController = navController, startDestination = HOME) {
-            composable(HOME) { SearchScreen(navController = navController) }
-            composable(PLAYER_STATS) { PlayerStatsScreen(navController = navController) }
+            composable(HOME) {
+                SearchScreen(
+                    onNavigateToPlayerStats = { name -> navController.navigate("$PLAYER_STATS/$name") }
+                )
+            }
+            composable(
+                "$PLAYER_STATS/{$PLAYER_TAG}",
+                arguments =
+                    listOf(
+                        navArgument(PLAYER_TAG) { type = NavType.StringType },
+                    ),
+            ) {
+                PlayerStatsScreen(navController = navController)
+            }
         }
     }
 }
 
-const val HOME = "HOME"
-const val PLAYER_STATS = "PLAYER_STATS"
+const val HOME = "home"
+const val PLAYER_STATS = "playerStats"
+const val PLAYER_TAG = "playerTag"

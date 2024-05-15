@@ -1,6 +1,7 @@
 package com.example.oversearch.presentation.components
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,8 +29,12 @@ import com.example.oversearch.domain.models.mock_data.player1
 import com.example.oversearch.presentation.theme.OversearchTheme
 
 @Composable
-fun PlayerItem(modifier: Modifier = Modifier, player: Player) {
-    Row(modifier) {
+fun PlayerItem(
+    modifier: Modifier = Modifier,
+    player: Player,
+    onNavigateToPlayerStats: (name: String) -> Unit = {}
+) {
+    Row(modifier.clickable { onNavigateToPlayerStats.invoke(player.username) }) {
         AsyncImage(
             modifier = Modifier.aspectRatio(1f),
             model = player.image,

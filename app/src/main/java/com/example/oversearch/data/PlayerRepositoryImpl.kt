@@ -22,6 +22,6 @@ constructor(
         overwatchPlayerSearchDataSource.getPlayerProfile(name)
     }
     fun getLastSearchedPlayers(): List<String> {
-        return listOf("shalva", "bigman")
+        return listOf("shalva", "bigman") // TODO retrieve them from cache
     }
 }
