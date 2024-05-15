@@ -1,7 +1,9 @@
-package com.example.oversearch.data.data
+package com.example.oversearch.data.models
 
 import com.example.oversearch.domain.models.Player
+import com.example.oversearch.domain.models.Profile
 import io.github.shalva97.overwatch_player_search_api.models.OverwatchPlayer
+import io.github.shalva97.overwatch_player_search_api.models.profile.PlayerProfileStats
 
 fun OverwatchPlayer.toDomain(): Player {
     return Player(
@@ -10,4 +12,8 @@ fun OverwatchPlayer.toDomain(): Player {
         backgroundImage = this.namecard,
         title = this.title
     )
+}
+
+fun PlayerProfileStats.toDomain(): Profile {
+    return Profile(icon, name, endorsement, endorsementIcon, title, gamesWon, gamesLost, private)
 }

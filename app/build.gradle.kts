@@ -53,7 +53,7 @@ kapt { correctErrorTypes = true }
 dependencies {
     implementation("io.coil-kt:coil-compose:2.6.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
-    implementation("io.github.shalva97.overwatch_player_search_api:library:1.1")
+    implementation("io.github.shalva97.overwatch_player_search_api:library:1.2")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("io.ktor:ktor-client-content-negotiation:2.3.10")
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.10")
@@ -71,6 +71,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     testImplementation(libs.junit)
+    testImplementation("org.slf4j:slf4j-simple:2.0.13")
     testImplementation(kotlin("test"))
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
