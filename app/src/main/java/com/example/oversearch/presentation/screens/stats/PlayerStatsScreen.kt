@@ -17,7 +17,7 @@ import com.example.oversearch.presentation.components.PlayerItem
 
 @Composable
 fun PlayerStatsScreen(
-    viewModel: PlayerStatsScreenViewModel = hiltViewModel(),
+    state: String,
     navController: NavHostController? = null,
 ) {
     Column(Modifier.fillMaxSize()) {
@@ -27,7 +27,7 @@ fun PlayerStatsScreen(
         )
         Text(
             modifier = Modifier.padding(16.dp),
-            text = viewModel.state.value,
+            text = state,
             style = MaterialTheme.typography.titleMedium,
         )
     }
@@ -36,5 +36,5 @@ fun PlayerStatsScreen(
 @Preview
 @Composable
 private fun Preview() {
-    PlayerStatsScreen()
+    PlayerStatsScreen("shalva")
 }
