@@ -22,6 +22,7 @@ import com.example.oversearch.presentation.screens.stats.PlayerStatsScreen
 import com.example.oversearch.presentation.screens.stats.PlayerStatsScreenViewModel
 import com.example.oversearch.presentation.theme.OversearchTheme
 import dagger.hilt.android.AndroidEntryPoint
+import io.ktor.http.encodeURLPath
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -52,7 +53,7 @@ fun App() {
                 SearchScreen(
                     state = state,
                     onNavigateToPlayerStats = { name ->
-                        navController.navigate("$PLAYER_STATS/$name")
+                        navController.navigate("$PLAYER_STATS/${name.encodeURLPath()}")
                     },
                     onPlayerSearch = viewmodel::searchPlayer
                 )
