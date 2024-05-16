@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.oversearch.R
 import com.example.oversearch.presentation.components.PlayerItem
@@ -44,7 +45,13 @@ fun SearchScreen(
                 }
             }
         }
-        if (state.isLoading) LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+        if (state.isLoading) {
+            Text(
+                modifier = Modifier.padding(16.dp).align(Alignment.CenterHorizontally),
+                text = "Loading..."
+            )
+            LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+        }
         var searchText by remember { mutableStateOf("") }
         TextField(
             modifier = Modifier.padding(8.dp).fillMaxWidth(),
@@ -59,4 +66,16 @@ fun SearchScreen(
             onValueChange = { searchText = it }
         )
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewLoading() {
+    SearchScreen(SearchScreenState(isLoading = true))
+}
+
+@Preview
+@Composable
+private fun PreviewNotLoading() {
+    SearchScreen(SearchScreenState(isLoading = false))
 }
