@@ -16,21 +16,42 @@ class SearchScreenViewModel
 constructor(
     private val playerRepository: PlayerRepository,
 ) : ViewModel() {
-    val state = MutableStateFlow(SearchScreenState())
+    val state = MutableStateFlow<SearchScreen>(SearchScreen.InitialState)
     private val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
         throwable.printStackTrace()
-        state.tryEmit(state.value.copy(isLoading = false))
+        state.tryEmit(SearchScreen.ErrorState)
     }
 
     fun searchPlayer(name: String) =
         viewModelScope.launch(exceptionHandler) {
-            state.emit(state.value.copy(isLoading = true))
+            setLoading()
             val players = playerRepository.search(name)
-            state.emit(state.value.copy(isLoading = false, players = players))
+            if (players.isNotEmpty()) showResult(players) else showNoPlayersFound()
         }
+
+    private suspend fun setLoading() {
+        state.emit(SearchScreen.LoadingState)
+    }
+
+    private suspend fun showResult(players: List<Player>) {
+        state.emit(SearchScreen.SearchScreenState(players))
+    }
+
+    private suspend fun showNoPlayersFound() {
+        state.emit(SearchScreen.NoPlayersFound)
+    }
 }
 
-data class SearchScreenState(
-    val isLoading: Boolean = false,
-    val players: List<Player> = emptyList(),
-)
+sealed interface SearchScreen {
+    data class SearchScreenState(
+        val players: List<Player> = emptyList(),
+    ) : SearchScreen
+
+    data object InitialState : SearchScreen
+
+    data object LoadingState : SearchScreen
+
+    data object ErrorState : SearchScreen
+
+    data object NoPlayersFound : SearchScreen
+}

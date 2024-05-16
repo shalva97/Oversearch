@@ -1,5 +1,6 @@
 package com.example.oversearch.presentation.screens.search
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -29,28 +30,48 @@ import com.example.oversearch.presentation.components.PlayerItem
 
 @Composable
 fun SearchScreen(
-    state: SearchScreenState,
+    state: SearchScreen,
     onNavigateToPlayerStats: (name: String) -> Unit = {},
     onPlayerSearch: (name: String) -> Unit = {}
 ) {
-    Column(Modifier.safeDrawingPadding()) {
-        LazyColumn(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            reverseLayout = true,
-            modifier = Modifier.weight(1f)
-        ) {
-            items(state.players) {
-                ElevatedCard(modifier = Modifier.padding(16.dp).height(60.dp)) {
-                    PlayerItem(player = it, onNavigateToPlayerStats = onNavigateToPlayerStats)
+    Column(Modifier.safeDrawingPadding(), verticalArrangement = Arrangement.Bottom) {
+        when (state) {
+            SearchScreen.ErrorState -> {
+                Text(
+                    modifier = Modifier.padding(16.dp).align(Alignment.CenterHorizontally),
+                    text = "Something went wrong"
+                )
+            }
+            SearchScreen.InitialState -> {}
+            SearchScreen.LoadingState -> {
+                Text(
+                    modifier = Modifier.padding(16.dp).align(Alignment.CenterHorizontally),
+                    text = "Loading..."
+                )
+                LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+            }
+            is SearchScreen.SearchScreenState -> {
+                LazyColumn(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    reverseLayout = true,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    items(state.players) {
+                        ElevatedCard(modifier = Modifier.padding(16.dp).height(60.dp)) {
+                            PlayerItem(
+                                player = it,
+                                onNavigateToPlayerStats = onNavigateToPlayerStats
+                            )
+                        }
+                    }
                 }
             }
-        }
-        if (state.isLoading) {
-            Text(
-                modifier = Modifier.padding(16.dp).align(Alignment.CenterHorizontally),
-                text = "Loading..."
-            )
-            LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+            SearchScreen.NoPlayersFound -> {
+                Text(
+                    modifier = Modifier.padding(16.dp).align(Alignment.CenterHorizontally),
+                    text = "No players found"
+                )
+            }
         }
         var searchText by remember { mutableStateOf("") }
         TextField(
@@ -58,7 +79,9 @@ fun SearchScreen(
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
             keyboardActions =
                 KeyboardActions(
-                    onSearch = { if (state.isLoading.not()) onPlayerSearch(searchText) }
+                    onSearch = {
+                        if (state !is SearchScreen.LoadingState) onPlayerSearch(searchText)
+                    }
                 ),
             maxLines = 1,
             placeholder = { Text(text = stringResource(R.string.search_for_a_player)) },
@@ -71,11 +94,18 @@ fun SearchScreen(
 @Preview(showBackground = true)
 @Composable
 private fun PreviewLoading() {
-    SearchScreen(SearchScreenState(isLoading = true))
+    SearchScreen(SearchScreen.LoadingState)
 }
 
 @Preview
 @Composable
 private fun PreviewNotLoading() {
-    SearchScreen(SearchScreenState(isLoading = false))
+    SearchScreen(SearchScreen.InitialState)
+}
+
+
+@Preview
+@Composable
+private fun PreviewNoPlayersFound() {
+    SearchScreen(SearchScreen.NoPlayersFound)
 }
