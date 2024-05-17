@@ -16,6 +16,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import androidx.navigation.toRoute
 import com.example.oversearch.presentation.screens.search.SearchScreen
 import com.example.oversearch.presentation.screens.search.SearchScreenViewModel
 import com.example.oversearch.presentation.screens.stats.PlayerStatsScreen
@@ -23,6 +24,7 @@ import com.example.oversearch.presentation.screens.stats.PlayerStatsScreenViewMo
 import com.example.oversearch.presentation.theme.OversearchTheme
 import dagger.hilt.android.AndroidEntryPoint
 import io.ktor.http.encodeURLPath
+import kotlinx.serialization.Serializable
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -46,22 +48,19 @@ class MainActivity : ComponentActivity() {
 fun App() {
     val navController = rememberNavController()
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-        NavHost(navController = navController, startDestination = HOME) {
-            composable(HOME) {
+        NavHost(navController = navController, startDestination = Search) {
+            composable<Search> {
                 val viewmodel: SearchScreenViewModel = hiltViewModel()
                 val state by viewmodel.state.collectAsState()
                 SearchScreen(
                     state = state,
-                    onNavigateToPlayerStats = { name ->
-                        navController.navigate("$PLAYER_STATS/${name.encodeURLPath()}")
+                    onNavigateToPlayerStats = { name, background ->
+                        navController.navigate(PlayerStats)
                     },
                     onPlayerSearch = viewmodel::searchPlayer
                 )
             }
-            composable(
-                "$PLAYER_STATS/{$PLAYER_TAG}",
-                arguments = listOf(navArgument(PLAYER_TAG) { type = NavType.StringType }),
-            ) {
+            composable<PlayerStats> {
                 val viewModel: PlayerStatsScreenViewModel = hiltViewModel()
                 PlayerStatsScreen(viewModel.state.value)
             }
@@ -69,6 +68,8 @@ fun App() {
     }
 }
 
-const val HOME = "home"
-const val PLAYER_STATS = "playerStats"
-const val PLAYER_TAG = "playerTag"
+@Serializable
+object Search
+
+@Serializable
+data class PlayerStats(val tag: String, val background: String)

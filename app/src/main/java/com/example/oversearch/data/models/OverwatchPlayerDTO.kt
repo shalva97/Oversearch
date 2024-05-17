@@ -15,5 +15,12 @@ fun OverwatchPlayer.toDomain(): Player {
 }
 
 fun PlayerProfileStats.toDomain(): Profile {
-    return Profile(icon, name, endorsement, endorsementIcon, title, gamesWon, gamesLost, private)
+    return Profile(
+        Player(name, icon, null, title),
+        endorsement,
+        endorsementIcon,
+        gamesWon,
+        gamesLost,
+        private
+    )
 }

@@ -32,9 +32,9 @@ import com.example.oversearch.presentation.theme.OversearchTheme
 fun PlayerItem(
     modifier: Modifier = Modifier,
     player: Player,
-    onNavigateToPlayerStats: (name: String) -> Unit = {}
+    onNavigateToPlayerStats: (name: String, background: String?) -> Unit = { _, _ -> }
 ) {
-    Row(modifier.clickable { onNavigateToPlayerStats.invoke(player.username) }) {
+    Row(modifier.clickable { onNavigateToPlayerStats.invoke(player.username, player.backgroundImage) }) {
         AsyncImage(
             modifier = Modifier.aspectRatio(1f),
             model = player.image,

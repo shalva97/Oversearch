@@ -20,6 +20,7 @@ constructor(
 
     suspend fun getPlayerProfile(name: String) = withContext(ioDispatcher){
         overwatchPlayerSearchDataSource.getPlayerProfile(name)
+            .toDomain()
     }
     fun getLastSearchedPlayers(): List<String> {
         return listOf("shalva", "bigman") // TODO retrieve them from cache

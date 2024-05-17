@@ -31,7 +31,7 @@ import com.example.oversearch.presentation.components.PlayerItem
 @Composable
 fun SearchScreen(
     state: SearchScreen,
-    onNavigateToPlayerStats: (name: String) -> Unit = {},
+    onNavigateToPlayerStats: (name: String, String?) -> Unit = { _, _ -> },
     onPlayerSearch: (name: String) -> Unit = {}
 ) {
     Column(Modifier.safeDrawingPadding(), verticalArrangement = Arrangement.Bottom) {
