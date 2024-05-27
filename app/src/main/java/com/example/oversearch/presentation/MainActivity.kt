@@ -55,7 +55,7 @@ fun App() {
                 SearchScreen(
                     state = state,
                     onNavigateToPlayerStats = { name, background ->
-                        navController.navigate(PlayerStats)
+                        navController.navigate(PlayerStats(name, background))
                     },
                     onPlayerSearch = viewmodel::searchPlayer
                 )
@@ -72,4 +72,4 @@ fun App() {
 object Search
 
 @Serializable
-data class PlayerStats(val tag: String, val background: String)
+data class PlayerStats(val tag: String, val background: String?)

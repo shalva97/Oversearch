@@ -22,6 +22,6 @@ constructor() : IOverwatchPlayerSearchDataSource {
     }
 
     override suspend fun getPlayerProfile(name: String): PlayerProfileStats {
-       return playerSearch.getPlayerProfile(name)
+       return playerSearch.getPlayerProfileForPC(name)
     }
 }
