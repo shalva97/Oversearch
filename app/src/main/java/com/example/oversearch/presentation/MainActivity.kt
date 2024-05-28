@@ -11,19 +11,15 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import androidx.navigation.toRoute
 import com.example.oversearch.presentation.screens.search.SearchScreen
 import com.example.oversearch.presentation.screens.search.SearchScreenViewModel
 import com.example.oversearch.presentation.screens.stats.PlayerStatsScreen
 import com.example.oversearch.presentation.screens.stats.PlayerStatsScreenViewModel
 import com.example.oversearch.presentation.theme.OversearchTheme
 import dagger.hilt.android.AndroidEntryPoint
-import io.ktor.http.encodeURLPath
 import kotlinx.serialization.Serializable
 
 @AndroidEntryPoint
@@ -35,7 +31,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.background,
                 ) {
                     App()
                 }
@@ -57,7 +53,7 @@ fun App() {
                     onNavigateToPlayerStats = { name, background ->
                         navController.navigate(PlayerStats(name, background))
                     },
-                    onPlayerSearch = viewmodel::searchPlayer
+                    onPlayerSearch = viewmodel::searchPlayer,
                 )
             }
             composable<PlayerStats> {

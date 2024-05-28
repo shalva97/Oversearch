@@ -11,3 +11,4 @@ data class Profile(
     val gamesLost: Int,
     val private: Boolean,
 )
+

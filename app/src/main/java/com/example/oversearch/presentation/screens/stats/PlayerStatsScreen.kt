@@ -16,27 +16,33 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.oversearch.R
+import com.example.oversearch.domain.models.Player
+import com.example.oversearch.domain.models.Profile
 
 @Composable
 fun PlayerStatsScreen(
     state: PlayerStatsState,
-    navController: NavHostController? = null,
 ) {
-    Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Bottom) {
+    Column(Modifier.fillMaxSize()) {
         when (state) {
             PlayerStatsState.ErrorState -> {
                 Text(
-                    modifier = Modifier.padding(16.dp).align(Alignment.CenterHorizontally),
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .align(Alignment.CenterHorizontally),
                     text = "No players found"
                 )
             }
+
             PlayerStatsState.InitialState -> {}
             PlayerStatsState.LoadingState -> {
+                LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
                 Text(
-                    modifier = Modifier.padding(16.dp).align(Alignment.CenterHorizontally),
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .align(Alignment.CenterHorizontally),
                     text = "Loading..."
                 )
-                LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
             }
 
             is PlayerStatsState.Statistics -> {
@@ -53,5 +59,21 @@ fun PlayerStatsScreen(
 @Preview
 @Composable
 private fun Preview() {
-//    PlayerStatsScreen("shalva")
+    PlayerStatsScreen(
+        PlayerStatsState.Statistics(
+            Profile(
+                player = Player(
+                    username = "john_doe",
+                    image = "https://example.com/john_doe.png",
+                    backgroundImage = "https://example.com/background.png",
+                    title = "Master Player"
+                ),
+                endorsement = 5,
+                endorsementIcon = "https://example.com/icon.png",
+                gamesWon = 30,
+                gamesLost = 10,
+                private = false
+            )
+        )
+    )
 }

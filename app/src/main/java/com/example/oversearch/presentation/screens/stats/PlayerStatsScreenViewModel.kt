@@ -1,22 +1,26 @@
 package com.example.oversearch.presentation.screens.stats
 
+import android.content.Context
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.example.oversearch.data.PlayerRepository
 import com.example.oversearch.domain.models.Profile
+import com.example.oversearch.presentation.MainActivity
 import com.example.oversearch.presentation.PlayerStats
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
-class PlayerStatsScreenViewModel
-@Inject
-constructor(savedStateHandle: SavedStateHandle, private val playerRepository: PlayerRepository) :
-    ViewModel() {
+class PlayerStatsScreenViewModel @Inject
+constructor(
+    savedStateHandle: SavedStateHandle,
+    private val playerRepository: PlayerRepository,
+) : ViewModel() {
     private val playerInfoArg: PlayerStats = savedStateHandle.toRoute()
 
     val state = MutableStateFlow<PlayerStatsState>(PlayerStatsState.InitialState)

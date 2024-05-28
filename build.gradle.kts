@@ -3,5 +3,5 @@ plugins {
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.jetbrainsKotlinAndroid) apply false
     id("com.google.dagger.hilt.android") version "2.48" apply false
-    id("com.ncorti.ktfmt.gradle") version "0.18.0" apply false
+    id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
 }

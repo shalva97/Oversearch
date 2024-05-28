@@ -4,10 +4,7 @@ plugins {
     kotlin("kapt")
     kotlin("plugin.serialization") version "1.9.23"
     id("com.google.dagger.hilt.android")
-    id("com.ncorti.ktfmt.gradle")
 }
-
-ktfmt { kotlinLangStyle() }
 
 android {
     namespace = "com.example.oversearch"
@@ -33,7 +30,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }

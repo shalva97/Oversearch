@@ -1,18 +1,20 @@
 package com.example.oversearch.presentation.screens.search
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.oversearch.data.PlayerRepository
 import com.example.oversearch.domain.models.Player
+import com.example.oversearch.presentation.MainActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 @HiltViewModel
-class SearchScreenViewModel
-@Inject
+class SearchScreenViewModel @Inject
 constructor(
     private val playerRepository: PlayerRepository,
 ) : ViewModel() {
