@@ -59,7 +59,7 @@ dependencies {
     implementation("io.ktor:ktor-client-okhttp:3.1.0")
     implementation("io.ktor:ktor-client-content-negotiation:3.1.0")
     implementation("com.google.dagger:hilt-android:2.54")
-    kapt("com.google.dagger:hilt-android-compiler:2.54")
+    kapt("com.google.dagger:hilt-android-compiler:2.55")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
