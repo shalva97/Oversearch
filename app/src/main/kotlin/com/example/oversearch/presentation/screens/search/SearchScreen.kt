@@ -103,7 +103,6 @@ private fun PreviewNotLoading() {
     SearchScreen(SearchScreen.InitialState)
 }
 
-
 @Preview
 @Composable
 private fun PreviewNoPlayersFound() {
