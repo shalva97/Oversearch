@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     kotlin("kapt")
-    kotlin("plugin.serialization") version "1.9.23"
+    kotlin("plugin.serialization") version "1.9.25"
     id("com.google.dagger.hilt.android")
 }
 
