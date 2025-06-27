@@ -52,7 +52,7 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.7.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     implementation("io.github.shalva97.overwatch_player_search_api:library:1.8")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
     implementation("io.ktor:ktor-client-content-negotiation:3.1.1")
     implementation("io.ktor:ktor-serialization-kotlinx-json:3.1.1")
     implementation("io.ktor:ktor-client-core:3.1.1")
