@@ -1,0 +1,40 @@
+product:
+  type: lib
+  platforms: [jvm, android, iosArm64, iosSimulatorArm64, iosX64]
+
+apply:
+  - ../common.module-template.yaml
+
+dependencies:
+  - $compose.foundation: exported
+  - $compose.material3: exported
+  - $compose.ui: exported
+  - $compose.components.resources
+  - ../data: exported
+  - org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta03
+  - io.coil-kt.coil3:coil-compose:3.2.0
+  - io.coil-kt.coil3:coil-network-ktor3:3.2.0
+  - io.insert-koin:koin-compose-viewmodel
+  -
+
+dependencies@android:
+  # Compose integration with Android activities
+  - androidx.activity:activity-compose:1.10.1: exported
+  - androidx.appcompat:appcompat:1.7.1: exported
+  - io.ktor:ktor-client-android:3.2.1
+
+dependencies@ios:
+  - io.ktor:ktor-client-darwin:3.2.1
+
+dependencies@jvm:
+  - io.ktor:ktor-client-java:3.2.1
+  - org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.10.2
+
+settings:
+  compose:
+    enabled: true
+    version: 1.8.2
+  kotlin:
+    ksp:
+      processors:
+        - io.insert-koin:koin-ksp-compiler:2.1.0

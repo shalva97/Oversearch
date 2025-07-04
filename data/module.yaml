@@ -1,0 +1,19 @@
+product:
+  type: lib
+  platforms: [jvm, android, iosArm64, iosSimulatorArm64, iosX64]
+
+apply:
+  - ../common.module-template.yaml
+
+repositories:
+  - url: https://maven.pkg.github.com/shalva97/overwatch-player-search-api
+    credentials:
+      file: ../local.properties
+      usernameKey: gpr.user
+      passwordKey: gpr.key
+
+dependencies:
+  - io.github.shalva97.overwatch_player_search_api:library:1.10
+
+dependencies@android:
+  - io.insert-koin:koin-android # TODO is this needed?
