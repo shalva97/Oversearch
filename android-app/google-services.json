@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "843947207514",
+    "project_id": "oversearch-github",
+    "storage_bucket": "oversearch-github.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843947207514:android:72c7e665abc6492db26163",
+        "android_client_info": {
+          "package_name": "io.github.shalva97.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqNt3i5L7-jz-7LdUZ3wsEfVQ_a6ENfu8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

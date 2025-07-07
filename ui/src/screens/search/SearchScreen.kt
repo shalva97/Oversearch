@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
@@ -24,10 +25,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import ui.generated.resources.Res
+import ui.generated.resources.search_for_a_player
 import ui.screens.search.components.PlayerItem
 
 @Serializable
@@ -38,7 +43,7 @@ fun NavGraphBuilder.searchScreen(
 ) {
     composable<SearchRoute> {
         val viewmodel: SearchScreenViewModel = koinViewModel()
-        val state by viewmodel.state.collectAsState()
+        val state by viewmodel.state.collectAsStateWithLifecycle()
         SearchScreen(
             state = state,
             onNavigateToPlayerStats = onPlayerStatsClicked,
@@ -106,7 +111,7 @@ fun SearchScreen(
                     }
                 ),
             maxLines = 1,
-//            placeholder = { Text(text = stringResource(Res.string.search_for_a_player)) }, TODO
+            placeholder = { Text(text = stringResource(Res.string.search_for_a_player)) },
             value = searchText,
             onValueChange = { searchText = it }
         )

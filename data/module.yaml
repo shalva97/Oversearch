@@ -13,7 +13,7 @@ repositories:
       passwordKey: gpr.key
 
 dependencies:
-  - io.github.shalva97.overwatch_player_search_api:library:1.10
+  - io.github.shalva97.overwatch_player_search_api:library:1.10.1
 
 dependencies@android:
   - io.insert-koin:koin-android # TODO is this needed?

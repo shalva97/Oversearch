@@ -8,9 +8,13 @@ dependencies:
   - bom: io.insert-koin:koin-bom:4.1.0
   - io.insert-koin:koin-compose
   - io.insert-koin:koin-compose-viewmodel
+  - bom: com.google.firebase:firebase-bom:33.16.0
+  - com.google.firebase:firebase-analytics
 
 settings:
   compose:
     enabled: true
     version: 1.8.2
   junit: junit-4
+  android:
+    applicationId: io.github.shalva97.debug

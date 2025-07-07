@@ -9,6 +9,7 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,11 +19,14 @@ import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
 import org.koin.compose.viewmodel.koinViewModel
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import data.models.Player
 import data.models.Profile
 import org.jetbrains.compose.resources.painterResource
+import ui.generated.resources.Res
+import ui.generated.resources.img_sample_player
+import ui.generated.resources.img_sample_player_background
+import ui.generated.resources.search_for_a_player
 
 @Serializable
 data class PlayerStatsRoute(val tag: String, val background: String?)
@@ -34,7 +38,7 @@ fun NavController.navigateToStatsScreen(playerStats: PlayerStatsRoute) {
 fun NavGraphBuilder.statsScreen() {
     composable<PlayerStatsRoute> {
         val viewModel: PlayerStatsScreenViewModel = koinViewModel()
-        val state by viewModel.state.collectAsStateWithLifecycle()
+        val state by viewModel.state.collectAsState()
         PlayerStatsScreen(state)
     }
 }
@@ -47,8 +51,7 @@ fun PlayerStatsScreen(
         when (state) {
             PlayerStatsState.ErrorState -> {
                 Text(
-                    modifier = Modifier.padding(16.dp)
-                        .align(Alignment.CenterHorizontally),
+                    modifier = Modifier.padding(16.dp).align(Alignment.CenterHorizontally),
                     text = "No players found"
                 )
             }
@@ -60,30 +63,28 @@ fun PlayerStatsScreen(
             PlayerStatsState.LoadingState -> {
                 LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
                 Text(
-                    modifier = Modifier.padding(16.dp)
-                        .align(Alignment.CenterHorizontally),
+                    modifier = Modifier.padding(16.dp).align(Alignment.CenterHorizontally),
                     text = "Loading..."
                 )
             }
 
             is PlayerStatsState.Statistics -> {
                 Column {
-                    Text(text = state.profile.player.username, style = MaterialTheme.typography.headlineMedium)
+                    Text(
+                        text = state.profile.player.username,
+                        style = MaterialTheme.typography.headlineMedium
+                    )
                     AsyncImage(
                         modifier = Modifier,
                         model = state.profile.player.backgroundImage,
                         contentDescription = null,
-//                        placeholder = painterResource(id = R.drawable.img_sample_player_background)
+                        placeholder = painterResource(Res.drawable.img_sample_player_background)
                     )
                     AsyncImage(
-                        modifier = Modifier
-                            .padding(start = 16.dp)
-                            .size(64.dp),
+                        modifier = Modifier.padding(start = 16.dp).size(64.dp),
                         model = state.profile.player.image,
                         contentDescription = null,
-//                    placeholder = painterResource(
-//                        id = R.drawable.img_sample_player
-//                    )
+                        placeholder = painterResource(Res.drawable.img_sample_player)
                     )
                     Text(text = state.profile.player.title ?: "")
                     Text(text = state.profile.endorsement.toString())
