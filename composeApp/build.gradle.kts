@@ -60,12 +60,15 @@ kotlin {
             implementation(libs.navigation.compose)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.vico.multiplatform)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
         iosMain.dependencies {
             implementation(libs.crashlytics)
+            implementation(libs.ktor.client.darwin)
         }
         androidMain.dependencies {
             implementation(compose.preview)
@@ -76,13 +79,15 @@ kotlin {
 
             // Add the dependencies for the Crashlytics NDK and Analytics libraries
             // When using the BoM, you don't specify versions in Firebase library dependencies
-            implementation("com.google.firebase:firebase-crashlytics-ndk")
-            implementation("com.google.firebase:firebase-analytics")
+            implementation(libs.firebase.crashlytics.ndk)
+            implementation(libs.firebase.analytics)
+            implementation(libs.ktor.client.okhttp)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
-            implementation("io.github.kdroidfilter:platformtools.darkmodedetector:0.5.0")
+            implementation(libs.platformtools.darkmodedetector)
+            implementation(libs.ktor.client.apache5)
         }
     }
 }

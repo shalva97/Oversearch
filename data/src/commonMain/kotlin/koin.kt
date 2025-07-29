@@ -11,5 +11,4 @@ val dataModule = module {
     factoryOf(::PlayerRepository)
     factoryOf(::CrashlyticsManager)
     factory { Dispatchers.IO }
-    BuildKonfig
 }

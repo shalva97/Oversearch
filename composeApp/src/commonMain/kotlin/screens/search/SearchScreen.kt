@@ -20,6 +20,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import data.CrashlyticsManager
+import data.models.Player
 import io.github.shalva97.screens.search.components.PLAYER_ITEM_SIZE
 import io.github.shalva97.screens.search.components.PlayerItem
 import kotlinx.serialization.Serializable

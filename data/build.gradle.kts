@@ -22,10 +22,11 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.kotlinx.coroutinesCore)
-            implementation(libs.library)
+            api(libs.library)
             implementation(libs.koin.core)
             implementation(libs.kotlinx.serialization.json)
-
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
         }
         commonTest.dependencies {
 
@@ -35,6 +36,9 @@ kotlin {
         }
         androidMain.dependencies {
             api("co.touchlab.crashkios:crashlytics:0.8.6")
+        }
+        jvmMain.dependencies {
+            implementation(libs.ktor.client.apache5)
         }
     }
 }
