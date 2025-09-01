@@ -57,6 +57,7 @@ kotlin {
             implementation(project(":data"))
             implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor3)
+            implementation(libs.coil.svg)
             implementation(libs.navigation.compose)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.vico.multiplatform)

@@ -1,9 +1,14 @@
 package io.github.shalva97.screens.stats
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -48,7 +53,7 @@ fun PlayerStatsScreen(
             PlayerStatsState.ErrorState -> {
                 Text(
                     modifier = Modifier.padding(16.dp).align(Alignment.CenterHorizontally),
-                    text = "No players found"
+                    text = "No player found"
                 )
             }
 
@@ -65,25 +70,87 @@ fun PlayerStatsScreen(
             }
 
             is PlayerStatsState.Statistics -> {
-                Column {
-                    Text(
-                        text = state.profile.player.username,
-                        style = MaterialTheme.typography.headlineMedium
-                    )
+                Box(modifier = Modifier.fillMaxSize()) {
                     AsyncImage(
-                        modifier = Modifier,
+                        modifier = Modifier.fillMaxWidth(),
                         model = state.profile.player.backgroundImage,
                         contentDescription = null,
-                        placeholder = painterResource(Res.drawable.img_sample_player_background)
+                        placeholder = painterResource(Res.drawable.img_sample_player_background),
+                        error = painterResource(Res.drawable.img_sample_player_background)
                     )
-                    AsyncImage(
-                        modifier = Modifier.padding(start = 16.dp).size(64.dp),
-                        model = state.profile.player.image,
-                        contentDescription = null,
-                        placeholder = painterResource(Res.drawable.img_sample_player)
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(
+                                brush = Brush.verticalGradient(
+                                    colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.7f))
+                                )
+                            )
                     )
-                    Text(text = state.profile.player.title ?: "")
-                    Text(text = state.profile.endorsement.toString())
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            AsyncImage(
+                                modifier = Modifier
+                                    .size(80.dp)
+                                    .clip(CircleShape),
+                                model = state.profile.player.image,
+                                contentDescription = null,
+                                placeholder = painterResource(Res.drawable.img_sample_player)
+                            )
+                            Column {
+                                Text(
+                                    text = state.profile.player.username,
+                                    style = MaterialTheme.typography.headlineMedium,
+                                    color = Color.White
+                                )
+                                Text(
+                                    text = state.profile.player.title ?: "",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    color = Color.White.copy(alpha = 0.7f)
+                                )
+                            }
+                        }
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Column {
+                                Text(
+                                    text = "Endorsement Level",
+                                    style = MaterialTheme.typography.labelLarge,
+                                    color = Color.White
+                                )
+                                AsyncImage(
+                                    modifier = Modifier
+                                        .size(32.dp),
+                                    model = state.profile.endorsementIcon,
+                                    contentDescription = null,
+                                    placeholder = painterResource(Res.drawable.img_sample_player),
+                                    error = painterResource(Res.drawable.img_sample_player)
+                                )
+                            }
+                            Column {
+                                Text(
+                                    text = "Games Won/Lost",
+                                    style = MaterialTheme.typography.labelLarge,
+                                    color = Color.White
+                                )
+                                Text(
+                                    text = "${state.profile.gamesWon}/${state.profile.gamesLost}",
+                                    style = MaterialTheme.typography.headlineSmall,
+                                    color = Color.White
+                                )
+                            }
+                        }
+                    }
                 }
             }
         }

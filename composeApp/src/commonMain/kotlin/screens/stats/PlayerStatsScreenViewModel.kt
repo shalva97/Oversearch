@@ -21,7 +21,7 @@ class PlayerStatsScreenViewModel(
         viewModelScope.launch {
             val player = playerRepository.getPlayerProfile(playerInfoArg.tag)
             val playerWithBackground =
-                player.copy(player = player.player.copy(title = playerInfoArg.background))
+                player.copy(player = player.player.copy(backgroundImage = playerInfoArg.background))
             state.emit(PlayerStatsState.Statistics(playerWithBackground))
         }
     }
